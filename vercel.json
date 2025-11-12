@@ -1,6 +1,15 @@
 {
-  "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "ng build --configuration production",
-  "outputDirectory": "dist/peeksy",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "version": 2,
+  "builds": [
+    {
+      "src": "angular.json",
+      "use": "@vercel/angular"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
 }
