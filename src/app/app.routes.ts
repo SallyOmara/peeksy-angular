@@ -132,11 +132,6 @@ export const routes: Routes = [
       },
     ],
   },
-  {
-    path: '',
-    loadComponent: () =>
-      import('./core/auth/login/login.component').then((c) => c.LoginComponent),
-  },
 
   {
     path: '**',
