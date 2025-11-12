@@ -1,0 +1,16 @@
+.layer h5 {
+  font-family: var(--sec-font);
+  font-size: 20px;
+  font-weight: 400;
+  margin: auto;
+  color: transparent;
+  transition: color 0.5s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.layer:hover h5 {
+  color: white;
+}

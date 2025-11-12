@@ -1,0 +1,11 @@
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: var(--text-color);
+  border-radius: 5px;
+  transition: all 0.5s;
+}
+
+.my-pagination ::ng-deep .ngx-pagination a,
+.ngx-pagination button {
+  color: var(--text-color);
+  border-radius: 5px;
+}

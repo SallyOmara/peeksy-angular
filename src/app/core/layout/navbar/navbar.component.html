@@ -1,0 +1,153 @@
+<nav
+  class="fixed top-0 z-50 left-0 w-full shadow-md bg-white opacity-75 transition-all duration-500"
+  [ngClass]="{
+    'translate-y-0': isVisible,
+    '-translate-y-[80px]': !isVisible
+  }"
+>
+  <div
+    class="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto px-5 lg:px-20 text-[--text-color] pt-2 pb-3"
+  >
+    <a routerLink="/home" class="flex items-center rtl:space-x-reverse text-4xl"
+      ><span>P</span
+      ><img src="./images/logo.png" class="w-10" alt="Peeksy Logo" />
+      <span>ksy</span></a
+    >
+    <button
+      type="button"
+      data-collapse-toggle="navbar-default"
+      (click)="isMenuOpen = !isMenuOpen"
+      class="relative w-10 h-10 flex flex-col justify-between items-center p-2 text-[--main-color] hover:text-[--hover-color] transition-all duration-500 md:hidden focus:outline-none"
+      [attr.aria-expanded]="isMenuOpen"
+    >
+      <span
+        class="block w-6 h-[2px] bg-current transition-all duration-300"
+        [class.rotate-45]="isMenuOpen"
+        [class.translate-y-[9px]]="isMenuOpen"
+      ></span>
+      <span
+        class="block w-6 h-[2px] bg-current transition-all duration-300"
+        [class.opacity-0]="isMenuOpen"
+      ></span>
+      <span
+        class="block w-6 h-[2px] bg-current transition-all duration-300"
+        [class.-rotate-45]="isMenuOpen"
+        [class.-translate-y-[9px]]="isMenuOpen"
+      ></span>
+    </button>
+    <div class="hidden w-full grow md:flex md:w-auto" id="navbar-default">
+      @if(isLogin == true){
+      <ul
+        class="font-medium flex flex-col p-4 md:p-1 lg:p-2 mt-4 md:flex-row md:mx-auto space-y-3 md:space-y-0 lg:space-x-5 md:space-x-2 rtl:space-x-reverse md:mt-0 xl:ms-80 text-center"
+      >
+        <li>
+          <a
+            routerLink="/home"
+            routerLinkActive="nav-custom-active"
+            class="nav-custom"
+            aria-current="page"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/products"
+            routerLinkActive="nav-custom-active"
+            class="nav-custom"
+            aria-current="page"
+            >Products</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/categories"
+            routerLinkActive="nav-custom-active"
+            class="nav-custom"
+            aria-current="page"
+            >Categories</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/brands"
+            routerLinkActive="nav-custom-active"
+            class="nav-custom"
+            aria-current="page"
+            >Brands</a
+          >
+        </li>
+      </ul>
+      }
+      <ul
+        class="font-medium flex flex-col items-center p-4 md:p-0 ms-auto mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0"
+      >
+        @if(isLogin == false){
+        <li class="flex items-center space-x-2">
+          <a class="nav-custom-link" aria-current="page">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a class="nav-custom-link" aria-current="page">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a class="nav-custom-link" aria-current="page">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a class="nav-custom-link" aria-current="page">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/login"
+            routerLinkActive="nav-custom-active"
+            class="nav-custom"
+            aria-current="page"
+            >Login</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/register"
+            routerLinkActive="nav-custom-active"
+            class="nav-custom"
+            aria-current="page"
+            >Register</a
+          >
+        </li>
+        }@else {
+        <li>
+          <a
+            routerLink="/my-wishlist"
+            class="block relative pt-2 hover:text-[--main-color] transition-all duration-100 text-2xl"
+            aria-current="page"
+            ><i class="fa-solid fa-heart"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/cart"
+            class="block relative pt-2 px-3 md:px-3 xl:px-5 hover:text-[--main-color] transition-all duration-100 text-2xl"
+            aria-current="page"
+            ><i class="fa-solid fa-cart-shopping"></i>
+            @if(count != 0){
+            <span
+              class="absolute text-[--text-color] bg-[--bg-color] text-[13px] font-semibold w-5 h-5 flex items-center justify-center rounded-full -top-1 end-3 bg-opacity-80 shadow-md"
+            >
+              {{ count }}
+            </span>
+            }
+          </a>
+        </li>
+        <li>
+          <a
+            (click)="signOut()"
+            class="nav-custom cursor-pointer"
+            aria-current="page"
+            >SignOut</a
+          >
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>

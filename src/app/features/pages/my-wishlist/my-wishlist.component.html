@@ -1,0 +1,60 @@
+<section class="py-10 mt-12">
+  <div class="container text-[--text-color] px-5 md:px-10 lg:px-15 xl:px-20">
+    <div class="md:col-span-8">
+      <h2 class="text-5xl mb-5">My Wishlist</h2>
+      @if (wishlist.length > 0) {
+      <div class="bg-[#ffffffb3] rounded-2xl p-8 shadow-lg">
+        @for (item of wishlist; track $index) { @if(item != wishlist[0]){
+        <hr class="hor-line" />
+        }
+        <div class="item flex justify-between items-center">
+          <div
+            class="details flex justify-start space-x-5 items-center w-[80%]"
+          >
+            <div class="img-part">
+              <img
+                [src]="item.imageCover"
+                class="w-36 border-2 border-opacity-50 border-[--text-color] rounded-2xl cursor-pointer"
+                [alt]="item.title"
+                [routerLink]="['/details', item.id]"
+              />
+            </div>
+            <div
+              class="text-part cursor-pointer"
+              [routerLink]="['/details', item.id]"
+            >
+              <h4 class="text-2xl">
+                {{ item.title }}
+              </h4>
+              <p class="text-light text-[--text-color]">
+                {{ item.category.name }}
+              </p>
+              <p class="text-light text-[--text-color] mt-5">
+                <span class="text-xl text-[--text-color] font-bold"
+                  >Brand :
+                </span>
+                {{ item.brand.name }}
+              </p>
+            </div>
+          </div>
+          <div>
+            <button
+              (click)="addProductItemToCart(item.id)"
+              class="btn block mx-auto mb-5"
+            >
+              Add To Cart
+            </button>
+            <button
+              (click)="removeProductFromWishlist(item.id)"
+              class="py-2 px-10 text-[#FF7F50] rounded-3xl outline outline-4 hover:text-[#ff7f5090] outline-[#FF7F50] hover:outline-[#ff7f5090] transition-all duration-100 cursor-pointer active:scale-90 ease-in-out block mx-auto"
+            >
+              Remove From Wishlist
+            </button>
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</section>

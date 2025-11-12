@@ -1,0 +1,14 @@
+<section>
+  <div class="p-5 mb-10">
+    <h2 class="text-5xl text-[--text-color] mb-10 font-stretch-90% text-center">
+      Recent Products
+    </h2>
+    <div
+      class="parent mt-20 mx-10 sm:mx-0 xl:mx-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-14 gap-y-20 justify-center items-center"
+    >
+      @for (product of productList.slice(0,5); track product.id) {
+      <app-card [product]="product" />
+      }
+    </div>
+  </div>
+</section>

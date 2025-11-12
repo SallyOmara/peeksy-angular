@@ -1,0 +1,24 @@
+<section>
+  <div class="container p-5 mt-14 mb-10 block mx-auto">
+    <div
+      class="products-title mt-10 mx-10 mb-16 grid sm:grid-cols-1 md:grid-cols-6"
+    >
+      <h2 class="text-6xl text-[--text-color] font-stretch-90% col-span-3">
+        {{ productList[0].category.name }} Products
+      </h2>
+      <input
+        type="search"
+        class="bg-white block mx-auto w-[70%] md:w-[60%] lg:w-[90%] placeholder:text-lg placeholder:text-[--text-color] opacity-75 placeholder:opacity-70 outline outline-3 outline-[#686767] focus:border-0 focus:outline-[#686767] rounded-3xl py-3 px-5 col-span-3"
+        placeholder="Search for..."
+        [(ngModel)]="text"
+      />
+    </div>
+    <div
+      class="parent mt-15 mx-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 gap-y-20"
+    >
+      @for (product of productList | search : text; track product.id) {
+      <app-card [product]="product" />
+      }
+    </div>
+  </div>
+</section>

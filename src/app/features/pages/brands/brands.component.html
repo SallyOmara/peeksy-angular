@@ -1,0 +1,29 @@
+<section>
+  <div class="container p-5 mb-10 mt-14">
+    <h2 class="text-6xl text-[--text-color] mt-10 font-stretch-90% mx-10">
+      All Brands
+    </h2>
+    <div
+      class="parent mt-5 mx-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 gap-y-10"
+    >
+      @for (brand of allBrands ; track brand._id) {
+      <div [routerLink]="['/brand-products', brand._id]">
+        <div
+          class="cont-img p-4 hover:-translate-y-5 transition-all duration-500 cursor-pointer"
+        >
+          <img
+            [src]="brand.image"
+            class="w-full rounded-2xl opacity-70"
+            [alt]="brand.name"
+          />
+        </div>
+        <div class="cont-text px-4">
+          <h4 class="text-lg leading-loose text-[--text-color] text-center">
+            {{ brand.name }}
+          </h4>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

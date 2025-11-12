@@ -1,0 +1,74 @@
+<div class="relative mb-3">
+  @if (element === 'input') {
+  <input
+    [class]="{
+      'border-green-700': control?.valid,
+      'border-red-700': control?.invalid && control?.touched
+    }"
+    [formControl]="control"
+    [type]="typeInput || (flag ? 'password' : 'text')"
+    [id]="idInput"
+    class="main-input peer"
+    placeholder=" "
+  />
+  }@else if (element === 'text') {
+
+  <textarea
+    [class]="{
+      'border-green-700': control?.valid,
+      'border-red-700': control?.invalid && control?.touched
+    }"
+    [formControl]="control"
+    [id]="idInput"
+    class="main-input peer"
+    placeholder=" "
+  ></textarea>
+  }
+  <label
+    [for]="idInput"
+    class="main-label"
+    [class]="{
+      'text-green-700': control?.valid,
+      'text-red-700': control?.invalid && control?.touched
+    }"
+    >{{ labelInput }}</label
+  >
+  @if(idInput == 'password' || idInput == 'rePassword'){
+  <span
+    (click)="flag = !flag"
+    class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer text-[--text-color]"
+    [class]="{
+      '-translate-y-10': control?.invalid && control?.touched
+    }"
+  >
+    @if(flag){
+    <i class="fas fa-eye"></i>
+    }@else{
+    <i class="fas fa-eye-slash"></i>
+    }
+  </span>
+  } @if(control?.errors &&control?.touched){
+  <div
+    class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50"
+    role="alert"
+  >
+    <div>
+      <ul class="mt-1.5 list-disc list-inside">
+        @if(control?.getError('required')){
+        <li>Input is required.</li>
+        } @if (control?.hasError('minlength')) {
+        <li>Name should be more than or equal 2 characters.</li>
+        } @if (control?.hasError('maxlength')) {
+        <li>Name should be less than or equal 20 characters.</li>
+        } @if (control?.hasError('email')) {
+        <li>Please enter a valid email address.</li>
+        } @if (control?.hasError('pattern')) {
+        <li><ng-content /></li>
+        } @if (control?.hasError('mismatch')) {
+        <li>Password confirmation is incorrect.</li>
+        }
+      </ul>
+    </div>
+  </div>
+  }
+</div>

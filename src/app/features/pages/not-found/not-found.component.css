@@ -1,0 +1,54 @@
+.cls-1 {
+  fill: #ffc541;
+}
+
+.cls-2 {
+  fill: var(--main-color);
+}
+
+.cls-3 {
+  fill: var(--hover-color);
+}
+
+.cls-4 {
+  fill: #ff7f50;
+}
+
+.cls-5 {
+  fill: #ff7f50;
+}
+
+.cls-6,
+.cls-7,
+.cls-8 {
+  fill: #b65c32;
+}
+
+.cls-10,
+.cls-6 {
+  opacity: 0.6;
+}
+
+.cls-7 {
+  opacity: 0.4;
+}
+
+.cls-9 {
+  fill: #ff7f50;
+}
+
+.cls-11 {
+  fill: #ff7f50;
+}
+
+.cls-12 {
+  fill: #9b462c;
+}
+
+.cls-13 {
+  fill: #aa512e;
+}
+
+.cls-14 {
+  fill: var(--main-color);
+}

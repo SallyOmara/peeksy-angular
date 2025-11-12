@@ -1,0 +1,62 @@
+<section class="flex flex-col lg:flex-row mt-10">
+  <div
+    class="reg-cont bg-[#6452687f] opacity-75 rounded-2xl p-10 shadow-lg shadow-[--bg-card] lg:w-2/4 md:w-2/3 mx-auto my-14"
+  >
+    <h1 class="text-center mb-3 font-medium text-3xl text-white">
+      Create Your Account
+    </h1>
+    <p class="text-center mb-5 font-light text-lg-end text-white">
+      Join us today and unlock all features.
+    </p>
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+      <app-input
+        [control]="registerForm.get('name')"
+        [typeInput]="'text'"
+        [idInput]="'name'"
+        labelInput="Name"
+      ></app-input>
+      <app-input
+        [control]="registerForm.get('email')"
+        [typeInput]="'email'"
+        [idInput]="'email'"
+        labelInput="Email"
+      ></app-input>
+      <app-input
+        [control]="registerForm.get('password')"
+        [idInput]="'password'"
+        labelInput="Password"
+      >
+        Please enter a valid password</app-input
+      >
+      <app-input
+        [control]="registerForm.get('rePassword')"
+        [idInput]="'rePassword'"
+        labelInput="rePassword"
+      ></app-input>
+      <app-input
+        [control]="registerForm.get('phone')"
+        [typeInput]="'tel'"
+        [idInput]="'phone'"
+        labelInput="Phone"
+      >
+        Accept only egypt phone numbers.</app-input
+      >
+      <button class="btn mt-5 block ms-auto" type="submit">
+        Submit @if(isLoading){
+        <span><i class="fas fa-spinner animate-spin"></i></span>
+        }
+      </button>
+      @if (msgError) {
+      <p class="text-center text-red-900 rounded-lg bg-red-200 mt-4 p-4">
+        {{ msgError }}
+      </p>
+      }
+    </form>
+  </div>
+
+  <div
+    class="reg-img w-[40%] justify-self-center self-center m-auto hidden lg:block"
+  >
+    <img src="./images/auth-img.png" class="pe-10" alt="" />
+  </div>
+</section>

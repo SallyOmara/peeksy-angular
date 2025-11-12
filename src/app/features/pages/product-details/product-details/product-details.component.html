@@ -1,0 +1,95 @@
+<section class="py-14">
+  <div class="container w-[90%] block mx-auto mt-10">
+    <div class="grid md:grid-cols-2 items-center gap-10">
+      <div class="col-span-1 flex flex-column lg:flex-row space-x-3">
+        <div class="w-[15%]">
+          @for (product of productDetails.images; track $index) {
+          <img
+            [src]="productDetails.images[$index]"
+            class="w-full border border-2 border-[--main-color] rounded-2xl mb-4 cursor-pointer opacity-50 hover:opacity-100 transition-all duration-300 active:scale-90 ease-in-out"
+            [alt]="productDetails.title"
+            (click)="changeImg(productDetails.images[$index])"
+          />
+          }
+        </div>
+        <div class="w-[80%] relative">
+          <img
+            [src]="mainImage"
+            class="w-full rounded-2xl"
+            [alt]="productDetails.title"
+          />
+          <a class="cursor-pointer">
+            <i
+              class="fa-solid fa-chevron-left absolute top-1/2 left-3 -translate-y-1/2 bg-white text-[--text-color] p-3 px-5 ps-3 rounded-full shadow-sm active:scale-90 ease-in-out"
+              id="prev"
+              (click)="slide(-1)"
+            ></i>
+          </a>
+          <a class="cursor-pointer">
+            <i
+              class="fa-solid fa-chevron-right absolute top-1/2 right-3 -translate-y-1/2 bg-white text-[--text-color] p-3 px-5 ps-3 mx-auto rounded-full shadow-sm active:scale-90 ease-in-out"
+              id="next"
+              (click)="slide(1)"
+            ></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-span-1">
+        <div class="prod-details flex justify-between items-center">
+          <div class="prod-title">
+            <span class="text-[--text-color] opacity-75 text-lg"
+              ><i class="fas fa-star text-yellow-600"></i
+              >{{ productDetails.ratingsAverage }} ({{
+                productDetails.ratingsQuantity
+              }})</span
+            >
+            <h2 class="text-4xl font-bold text-[--text-color]">
+              {{ productDetails.title }}
+            </h2>
+          </div>
+          <button
+            class="prod-wishlist text-[--text-color] text-4xl cursor-pointer active:scale-90 ease-in-out"
+            [class.hidden]="productDetails.inWishlist"
+            (click)="addProductToWishlist(productDetails.id)"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <button
+            class="prod-wishlist text-[--text-color] text-4xl cursor-pointer active:scale-90 ease-in-out"
+            [class.hidden]="!productDetails.inWishlist"
+            (click)="removeProductFromWishlist(productDetails.id)"
+          >
+            <i class="fa-solid fa-heart"></i>
+          </button>
+        </div>
+
+        <p class="text-[--text-color] opacity-75 text-xl my-2">
+          {{ productDetails.description }}
+        </p>
+        <hr class="hor-line" />
+        <div class="flex flex-row justify-start items-center gap-5 mt-10">
+          <p class="text-[--text-color] opacity-75 text-xl">
+            <span class="font-bold text-[--text-color]">Category: </span
+            >{{ productDetails.category.name }}
+          </p>
+          <p class="text-[--text-color] opacity-75 text-xl">
+            <span class="font-bold text-[--text-color]">Brand: </span
+            >{{ productDetails.brand.name }}
+          </p>
+        </div>
+        <p class="text-[--text-color] opacity-75 text-xl mt-5">
+          <span class="font-bold text-[--text-color]">Quantity: </span
+          >{{ productDetails.quantity }}
+        </p>
+        <div class="flex flex-row justify-start items-center gap-5 mt-10">
+          <button
+            class="btn md:inline"
+            (click)="addProductItemToCart(productDetails._id)"
+          >
+            ${{ productDetails.price }} . Add To Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

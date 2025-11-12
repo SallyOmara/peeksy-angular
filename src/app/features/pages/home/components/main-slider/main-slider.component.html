@@ -1,0 +1,49 @@
+<section
+  class="mt-24 w-11/12 opacity-75 relative mx-auto md:grid md:grid-cols-5"
+>
+  <owl-carousel-o
+    [options]="mainSliderOptions"
+    class="opacity-90 md:col-span-3"
+  >
+    <ng-template carouselSlide>
+      <img
+        src="/images/slider-image-1.png"
+        class="rounded-3xl md:rounded-e-none md:rounded-s-3xl"
+        alt=""
+      />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img
+        src="/images/slider-image-2.png"
+        class="rounded-3xl md:rounded-e-none md:rounded-s-3xl"
+        alt=""
+      />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img
+        src="/images/slider-image-3.png"
+        class="rounded-3xl md:rounded-e-none md:rounded-s-3xl"
+        alt=""
+      />
+    </ng-template>
+    <ng-template carouselSlide>
+      <img
+        src="/images/slider-image-4.png"
+        class="rounded-3xl md:rounded-e-none md:rounded-s-3xl"
+        alt=""
+      />
+    </ng-template>
+  </owl-carousel-o>
+  <div
+    class="slider-layer hidden md:block bg-white opacity-80 px-10 my-auto py-16 lg:py-20 xl:py-32 rounded-e-3xl col-span-2 h-full"
+  >
+    <p class="text-xs lg:text-lg xl:text-xl 2xl:text-2xl">
+      EVERYTHING YOU LOVE, ALL IN ONE PLACE.
+    </p>
+
+    <h1 class="text-lg lg:text-3xl xl:text-4xl 2xl:text-6xl">
+      JUST WHAT YOU’VE BEEN LOOKING FOR
+    </h1>
+    <button class="btn mt-4" routerLink="/products">Shop Now</button>
+  </div>
+</section>

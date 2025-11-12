@@ -1,0 +1,43 @@
+<section class="flex justify-center mt-10">
+  <div
+    class="bg-[#6452687f] opacity-75 rounded-2xl p-10 shadow-lg shadow-[#014c4c29] lg:w-3/7 md:w-2/3 mx-auto my-14"
+  >
+    <h1 class="text-center mb-3 font-medium text-3xl text-white">Checkout</h1>
+    <p class="text-center mb-5 font-light text-lg-end text-white">
+      Thank you for staying at <span class="font-bold">Peeksy!</span> We hope
+      you had a wonderful time.
+    </p>
+    <form [formGroup]="checkoutForm" (ngSubmit)="submitForm()">
+      <app-input
+        [element]="'text'"
+        [control]="checkoutForm.get('shippingAddress')?.get('details')"
+        [typeInput]="'text'"
+        [idInput]="'details'"
+        labelInput="Address Details"
+      ></app-input>
+      <app-input
+        [element]="'input'"
+        [control]="checkoutForm.get('shippingAddress')?.get('phone')"
+        [typeInput]="'tel'"
+        [idInput]="'phone'"
+        labelInput="phone"
+        >Accept only egypt phone numbers.</app-input
+      >
+      <app-input
+        [element]="'input'"
+        [control]="checkoutForm.get('shippingAddress')?.get('city')"
+        [typeInput]="'text'"
+        [idInput]="'city'"
+        labelInput="City"
+      ></app-input>
+      <div class="check-btn flex justify-around">
+        <button class="btn mt-4" type="submit" (mousedown)="flag = true">
+          Payment By Visa
+        </button>
+        <button class="btn mt-4" type="submit" (mousedown)="flag = false">
+          Payment By Cash
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<section class="py-5">
+  <div class="container p-5 text-center block mx-auto">
+    <h2 class="text-5xl text-[--text-color] mb-10 font-stretch-90%">
+      Popular Categories
+    </h2>
+    <div
+      class="img-container w-11/12 m-auto p-8 bg-[#68676762] shadow-lg rounded-3xl"
+    >
+      <owl-carousel-o [options]="categoriesOptions">
+        @for (category of categoriesList; track category._id) {
+        <ng-template carouselSlide [id]="category._id">
+          <div
+            class="img-container rounded-3xl overflow-hidden cursor-pointer opacity-75 mx-5 shadow-xl"
+            [routerLink]="['/category-products', category._id]"
+          >
+            <img
+              [src]="category.image"
+              class="w-full h-[250px]"
+              [alt]="category.name"
+            />
+            <div class="layer mx-5 rounded-3xl">
+              <h5 class="">{{ category.name }}</h5>
+            </div>
+          </div>
+        </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>

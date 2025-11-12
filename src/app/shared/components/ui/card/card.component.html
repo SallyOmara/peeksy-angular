@@ -1,0 +1,54 @@
+<div class="card bg-[--bg-card] rounded-2xl shadow-lg relative">
+  <div>
+    <div
+      class="cont-img p-4 -translate-y-12 hover:-translate-y-14 transition-all duration-500 cursor-pointer"
+      [routerLink]="['/details', product.id]"
+    >
+      <img
+        [src]="product.imageCover"
+        class="w-full rounded-2xl opacity-90"
+        [alt]="product.title"
+      />
+    </div>
+    <div class="cont-text -translate-y-12 px-4">
+      <div class="prod-details flex justify-between items-center">
+        <div
+          class="prod-title cursor-pointer"
+          [routerLink]="['/details', product.id]"
+        >
+          <h3 class="font-medium text-white">{{ product.category.name }}</h3>
+          <h4 class="text-lg line-clamp-1 leading-loose text-[--main-color]">
+            {{ product.title }}
+          </h4>
+        </div>
+        <button
+          class="prod-wishlist text-[--main-color] text-3xl cursor-pointer active:scale-90 ease-in-out"
+          [class.hidden]="product.inWishlist"
+          (click)="addProductToWishlist(product.id)"
+        >
+          <i class="fa-regular fa-heart"></i>
+        </button>
+        <button
+          class="prod-wishlist text-[--main-color] text-3xl cursor-pointer active:scale-90 ease-in-out"
+          [class.hidden]="!product.inWishlist"
+          (click)="removeProductFromWishlist(product.id)"
+        >
+          <i class="fa-solid fa-heart"></i>
+        </button>
+      </div>
+      <div class="flex justify-between items-center text-white">
+        <span>${{ product.price }}</span>
+        <span
+          ><i class="fas fa-star text-yellow-600"></i
+          >{{ product.ratingsAverage }}</span
+        >
+      </div>
+    </div>
+  </div>
+  <button
+    (click)="addProductItemToCart(product.id)"
+    class="btn -translate-y-8 px-12 sm:px-14 md:px-5 xl:px-10 block m-auto"
+  >
+    Add To Cart
+  </button>
+</div>
