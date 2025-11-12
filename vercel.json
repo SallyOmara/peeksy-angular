@@ -1,9 +1,9 @@
 {
-  "version": 2,
+  "version": 3,
   "builds": [
     {
-      "src": "angular.json",
-      "use": "@vercel/angular"
+      "src": "dist/peeksy/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
