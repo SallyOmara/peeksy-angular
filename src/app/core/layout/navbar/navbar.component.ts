@@ -3,6 +3,7 @@ import { Component, HostListener, inject, Input, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../auth/services/auth.service';
 import { CartService } from '../../../features/pages/cart/services/cart.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,8 +15,9 @@ import { CartService } from '../../../features/pages/cart/services/cart.service'
 export class NavbarComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly cartService = inject(CartService);
+  private readonly cookieService = inject(CookieService);
 
-  count!: number;
+  count: number = 0;
 
   @Input({ required: true }) isLogin!: boolean;
 
@@ -24,12 +26,15 @@ export class NavbarComponent implements OnInit {
   lastScrollY = 0;
 
   ngOnInit(): void {
-    this.loadCartCount();
-
-    this.getCartCount();
+    this.subscribeCartCount();
+    this.loadCartCountIfLoggedIn();
   }
 
-  getCartCount(): void {
+  /**
+   * Subscribes to the cart count BehaviorSubject
+   * to update the navbar counter whenever it changes.
+   */
+  private subscribeCartCount(): void {
     this.cartService.cartCount.subscribe({
       next: (value) => {
         this.count = value;
@@ -37,13 +42,19 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  loadCartCount(): void {
+  /**
+   * Loads the cart count from the server only
+   * if the user is logged in (token exists).
+   */
+  private loadCartCountIfLoggedIn(): void {
+    if (!this.cookieService.check('token')) return;
+
     this.cartService.getProductToCart().subscribe({
       next: (res) => {
         this.cartService.cartCount.next(res.numOfCartItems || 0);
       },
       error: (err) => {
-        console.log(err);
+        console.error('Error loading cart count:', err);
       },
     });
   }
@@ -53,8 +64,8 @@ export class NavbarComponent implements OnInit {
   }
 
   @HostListener('window:scroll', [])
-  onWindowScroll() {
-    let currentScroll = window.scrollY;
+  onWindowScroll(): void {
+    const currentScroll = window.scrollY;
 
     if (currentScroll <= 0) {
       this.isVisible = true;
