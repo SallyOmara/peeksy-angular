@@ -1,47 +1,22 @@
-// import { HttpInterceptorFn } from '@angular/common/http';
-// import { inject } from '@angular/core';
-// import { CookieService } from 'ngx-cookie-service';
-
-// export const headersInterceptor: HttpInterceptorFn = (req, next) => {
-//   const cookieService = inject(CookieService);
-
-//   if (cookieService.check('token')) {
-// if (
-//   req.url.includes('cart') ||
-//   req.url.includes('orders') ||
-//   req.url.includes('wishlist')
-// ) {
-// req = req.clone({
-//   setHeaders: {
-//     token: cookieService.get('token'),
-//   },
-// });
-
-//     req = req.clone({
-//       setHeaders: {
-//         Authorization: `Bearer ${cookieService.get('token')}`,
-//       },
-//     });
-//     // }
-//   }
-
-//   return next(req);
-// };
-
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
 export const headersInterceptor: HttpInterceptorFn = (req, next) => {
   const cookieService = inject(CookieService);
-  const token = cookieService.get('token');
 
-  if (token) {
-    req = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  if (cookieService.check('token')) {
+    if (
+      req.url.includes('cart') ||
+      req.url.includes('orders') ||
+      req.url.includes('wishlist')
+    ) {
+      req = req.clone({
+        setHeaders: {
+          token: cookieService.get('token'),
+        },
+      });
+    }
   }
 
   return next(req);
