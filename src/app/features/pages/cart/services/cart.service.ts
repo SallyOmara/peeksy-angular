@@ -40,7 +40,7 @@ export class CartService {
   checkoutSession(id: string | null, data: object): Observable<any> {
     return this.httpClient.post(
       environment.baseUrl +
-        `orders/checkout-session/${id}?url=http://localhost:4200`,
+        `orders/checkout-session/${id}?url=https://peeksy-angular.vercel.app`,
       data
     );
   }

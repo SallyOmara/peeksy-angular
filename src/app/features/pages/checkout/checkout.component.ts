@@ -60,7 +60,6 @@ export class CheckoutComponent implements OnInit {
           .subscribe({
             next: (res) => {
               if (res.status === 'success') {
-                //Open URL stripe - res.session.url
                 this.cartService.cartCount.next(0);
                 window.open(res.session.url, '_self');
               }
