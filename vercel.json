@@ -2,14 +2,18 @@
   "version": 3,
   "builds": [
     {
-      "src": "dist/peeksy/**",
+      "src": "dist/peeksy/server/main.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/peeksy/browser/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "dist/peeksy/server/main.js"
     }
   ]
 }
